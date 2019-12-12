@@ -7,9 +7,16 @@ meta data + logical & physical data independence + tx
 
 ### Storeage Engine & Relational Engine
 #### Storeage Engine
-indexing, backup and restore, concurrency control, logging, and recovery.
+def
+: a software module used to create, read, and update data between the disk and memory while still maintaining data integrity (rollback journals and write-ahead logs).
+
+component
+: indexing, backup and restore, concurrency control, logging, and recovery.
 #### Relational Engine
-SQL parser, catalogs, query optimization, query execution.
+def
+: Optimizes the query plan and chooses the best algorithms such as for searching and sorting. (Query Optimizer)
+component
+: SQL parser, catalogs, query optimization, query execution.
 
 ## SQL
 ### 5 integrity constraints
