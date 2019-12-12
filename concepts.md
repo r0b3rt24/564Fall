@@ -97,7 +97,10 @@ scan log + log the rollback + rollback
 - log analysis + redo + undo
 - incomplete tx + mem failure + good rec log + good db (slightly out of date)
 
-## Concurrency Control
+## Concurrency Control (isolation)
+### high level VS low level
+tx level: DB contents, locks, entrire tx (hrs), S/X/U
+thread level: in-mem data structure, latches, critical section (secs), R/W
 ### OCC & PCC
 #### Optimistic Concurrency Control
 Assume most transactions won't have conflicts
@@ -115,7 +118,24 @@ If an action violates this ordering, the transaction is aborted and restarted.
 3. By doing so, we could have a much more compact log which save time for recovery. 
 
 ### 3 locks
-KVL, IM, KRL
+*KVL*
+- key value locking
+- distinct key value + gap to prior key value
+- good for searching
+
+*IM*
+- index management
+- (in all idx) logical row + gap to prior logical row
+- good for update
+
+*KRL*
+- key range locking
+- (one row, one idx) index entry + gap to prior idx entry
+- good for searching
+
+*comparison*
+KVL+IM lock range larger, management easier (acquisition fewer). 
+KRL lock range smaller, concurrency higher. 
 
 ## Columnar Storage
 ### application scenario
