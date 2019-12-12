@@ -6,9 +6,9 @@ entity, relationship, degree + cardinality
 meta data + logical & physical data independence + tx
 
 ## SQL
-## 5 constraints
+## 5 integrity constraints
 Not NULL, CHECK, UNIQUE, PK, FK
-PK: functional dependency
+ - PK: functional dependency
 
 ## 5 data type
 
@@ -41,15 +41,21 @@ requirements similar to relation algebra
 
 *naive nlp*
 - easy to implement~
+
 *idx nlp*
-- \; deal with any size of input; sorted outer input may help but not required; idx on inner input 
+- \\; deal with any size of input; sorted outer input may help but not required; idx on inner input 
+
 *merge join*
-- require at least one equality predicate; \; sorted; \
+- require at least one equality predicate; \\; sorted; \\
 - not friendly for dup join key values
+
 *hash join*
-- require at least one equality predicate; build input fit in mem; \; \ 
+- require at least one equality predicate; build input fit in mem; \\; \\
 
-
+*hash join VS hash aggregation*
+1. hash join stores each build row, so the total memory requirement is proportional to the number and size of the build rows; 
+hash aggregate stores one row for each group, so the total memory requirement is proportional to the number and size of the output groups or rows; 
+2. hash aggregation collapse duplicate rows into one group
 
 ## Tree-based Storage Structures
 ### b tree / hash
