@@ -486,7 +486,20 @@ B+ Tree (You know this well enough)
 
 ## Scaling & parallel query execution
 
+### Architectures
 
+1. Shared-memory: multiple CPUSs are attached to an interconnection network and can access a common region of main memory
+
+   1. Communation overhead is low
+   2. Interference between CPUs are high
+
+2. Shared-disk: each CPU has a private memory, and direct access to all disk through interconnection netwrok
+
+3. Shared-nothing: No common memroy and disk, all communications of CPUs through network.
+
+   1. Linear speed-up and linear scale-up: keep adding more CPUs will always get a better performance!
+
+   
 
 ## Cloud services/Distributed Database
 
