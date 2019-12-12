@@ -193,7 +193,38 @@ DBMS has a better sense than OS about what data will be preocessed later. It wil
 
 ## Tree-based Storeage Structures
 
-B+ tree
+- B+ tree
+- ISAM
+
+#### Benefits
+
+1. Always keep balence when insert and delete node
+2. keep a 50% occupancy at least
+3. Search only takes the height of the B+Tree
+
+
+
+#### Key Compression
+
+The height of the B+Tree is proportional to the log(fan-out). So having a long key value, not many indexes can fit on a page, the fan-out is low, and the tree's height is large.
+
+##### Example
+
+"David Smith", "Devarakoda ....", you only need to discrininate these two keys by looking add the first two letter "Da", "De"
+
+
+
+#### Bulk-loading
+
+When inserting a lot of enrties into the B-Tree, since each insertion need to traverse from the root to the leave, it's time consuming.
+
+1.  Load all the data from the disk.
+2. Sort the data.
+3. Insert (This step will save a lot of time bc the only time it takes is to write pages on memeory)
+
+
+
+
 
 ## Sorting
 
