@@ -219,6 +219,8 @@ Operation is fast when input fits in memory. When it barely fits, the entire inp
 
 Spill as to disk as much as needed. 
 
+page size optimization: try to beat page size = latency × bandwidth
+
 #### Distributed Sort
 
 MapReduce
