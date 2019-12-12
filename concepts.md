@@ -32,8 +32,10 @@ inner join, semi join, outer join
 ### aggregate (group by)/dup removal (distinct) Basic Methods
 *in stream*
 - sorted input
+
 *in sort*
 - sort intermediate result (min/max, count, sum)
+
 *hash*
 - unsorted input and in-memory hash table
 
