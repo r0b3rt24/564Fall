@@ -102,6 +102,10 @@ backup & restore, consistency check & repair, index creation & defragmentation, 
 
 
 
+
+
+
+
 **What is required within a database to efficiently support a non-null constraint?**
 
 - A simple predicate is applied during all updates.
@@ -452,6 +456,14 @@ If an action violates this ordering, the transaction is aborted and restarted.
 
 
 
+#### Snapshot isolation
+
+1. The basic idea is take a snapshot(a copy of the entire database at a certain moment) once a while. 
+2. Delete logs that don't have new information on tip of the snapshot.
+3. By doing so, we could have a much more compact log which save time for recovery. 
+
+
+
 ## Indexes and other DBMSs
 
 ### Tree-Based Index
@@ -546,3 +558,14 @@ Piplining: Splitting query operations
 
 
 ## In memory database
+
+- in-memory database stores the entire database in memory
+
+- When encounters a system failure, there is no way to restore any data.
+
+- In-memory database achieves persistent by additionally persist each operation on disk in a transaction log.
+
+  - Queries always hit the memeory.
+  - Update will need to access the disk, the transactions will append the end of the disk.
+
+  
