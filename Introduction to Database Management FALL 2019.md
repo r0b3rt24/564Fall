@@ -30,12 +30,36 @@
 
 
 
+### Entity Type
+
+1. Strong type
+
+   Strong type enetity doesn't have to depend on other entity to exist
+
+2. Weak Type
+
+   On the contratry of the Strong type, the weak type;s existence depends on other entities.
+
+
+
 ### Relationship and Relationship Sets
 
 1. A relationship is an associate among two or more entities.
 2. Relationships Set is a set of similar relationships.
 3. Descriptive Attributes: record information about relationships reather than the entity participates the relationships.
 4. Ternary relationship: 
+
+
+
+**Logical data independence**: The ability to change the Conceptual (Logical) schema without changing the External schema (User View) is called logical data independence. For example, the addition or removal of new entities, attributes, or relationships to the conceptual schema or having to rewrite existing application programs.
+
+
+
+**Physical data independence:** The ability to change the physical schema without changing the logical schema is called physical data independence. For example, a change to the internal schema, such as using different file organization or storage structures, storage devices, or indexing strategy, should be possible without having to change the conceptual or external schemas.
+
+
+
+**neighboring areas within computer science**: operating systems, file systems, storage, networking, communication, programming languages, compilers, theory & complexity, data structures & algorithms, high-performance & super computing, fault-tolerance, software engineering, hardware, system/data center designs
 
 ### Key constraints
 
@@ -46,21 +70,39 @@
 5. Super key is a set of fields that contains a key
 6. **5 keys:  check, not null, primary key, foriegn key, unique.** 
 
-### Storage Engine & Relational Engine
 
-#### Storeage Engine:
+
+### System Architecture
+
+#### Process manager
+
+tartup/shutdown, failover, login/authentication, admission control/dispatch, memory manager, load management, monitoring & admin
+
+#### Communication & client library
+
+client-side, caching & coheaency
+
+#### Storeage Engine
 
 indexing, backup and restore, concurrency control, logging, and recovery.
 
-#### Relational Engine:
+#### Relational Engine
 
 SQL parser, catalogs, query optimization, query execution.
+
+#### Utilities
+
+backup & restore, consistency check & repair, index creation & defragmentation, loading, replication & log shipping
 
 
 
 ## SQL
 
-***What is required within a database to efficiently support a non-null constraint?***
+**More compehensive information please see: https://www.w3schools.com/sql/**
+
+
+
+**What is required within a database to efficiently support a non-null constraint?**
 
 - A simple predicate is applied during all updates.
 
@@ -79,6 +121,12 @@ It projects column(s) that satisfy a given predicate.
 #### Rename($\rho$)
 
 $\rho(relation1, relation2)$
+
+
+
+### Column Types
+
+int, numeric, date, datetime, char, varchar
 
 
 
@@ -114,7 +162,7 @@ Least frequently Used
 
 ##### ARC
 
-Adaptive Replacement Cache ( track both frequent and recently used pages)
+Adaptive Replacement Cache ( track both frequently used and recently used pages)
 
 ##### FIFO
 
@@ -122,13 +170,7 @@ First in first out
 
 
 
-### RAID (not on the exam, also you learnd this in OS)
-
-##### RAID-4
-
-##### RAID-5
-
-##### RAID-6
+### RAID4/5/6 (not on the exam, also you learnd this in OS)
 
 
 
@@ -169,6 +211,18 @@ Phase one: read-sort-write cycle load M bytes uin memeory, sort write to disk
 
 ![Screen Shot 2019-12-11 at 5.20.16 PM](/Users/hcao/Documents/ScreenShots/Screen Shot 2019-12-11 at 5.20.16 PM.png)
 
+#### Performance cliff problem
+
+Operation is fast when input fits in memory. When it barely fits, the entire input is spilled, causing drastic change in performance
+
+##### Solution
+
+Spill as to disk as much as needed. 
+
+#### Distributed Sort
+
+MapReduce
+
 ## Query execution algorithms
 
 ##### Table Scan
@@ -206,8 +260,6 @@ Duplicate kety values, zigzag, sort on normalized keys or hash values
 ##### Hash join: 
 
 internal, external, recursive, graceful degreadation
-
-
 
 
 
@@ -371,6 +423,35 @@ all locks held by a tranx are released when trax is finished.
 
 ### OCC & PCC
 application scenarios
+
+
+#### Latches vs Lock
+
+Lock: ensures traxs are atomic (high-level)
+
+Latches: ensures actions are atomic (low-level)
+
+
+
+#### Locking  in indexes
+
+1. Key-range locking
+2. Key-value locking
+
+#### Optimistic Concurrency Control
+
+Assume most transactions won't have conflicts
+
+1. Read: the transaction executes, readling values from the database and writing to a private workspace.
+2. Validation: if the transaction decides that it wants to commit, the DBMS checks whether the transaction could possibly have conflicted with any other concurrently executing transaction. If there is a possible conflict, abort.
+3. Write: if validatipon determines that there are no conflicts, the changes to the data objects will be copied from the private workspace to the database.
+
+#### Timestamps(Timestamp based concurrency control)
+
+Each transaction can be assigned a timestamp at startup, and we can ensure , at execution time, that if action ai of transaction Ti conflicts with action aj of transaction Tj, ai occurs before aj if TS(Ti) < TS(Tj)
+
+If an action violates this ordering, the transaction is aborted and restarted.
+
 
 
 ## Indexes and other DBMSs
