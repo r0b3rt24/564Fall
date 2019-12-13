@@ -79,6 +79,13 @@ hash aggregate stores one row for each group, so the total memory requirement is
 #### Hash-Based Index
 - Put records into buckets according to hash(key)
 - can also add Axulleries key in each bucket (sort in each bucket)
+### key value store / RDBMS
+RDBMS: 
+- pros: more comprehensive; better for data organization and management 
+- cons: 
+key value store: 
+- pros: more concurrency control; light weight; better for scalability performance; faster for recovery; (data model is not hierachical); 
+- cons: does not support sql; not great for 
 
 ## Transaction Management
 ### ACID
