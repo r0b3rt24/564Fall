@@ -102,10 +102,6 @@ backup & restore, consistency check & repair, index creation & defragmentation, 
 
 
 
-
-
-
-
 **What is required within a database to efficiently support a non-null constraint?**
 
 - A simple predicate is applied during all updates.
@@ -538,6 +534,16 @@ B+ Tree (You know this well enough)
 
 ## Scaling & parallel query execution
 
+
+
+### Linear Speed Up
+
+When adding more resources, workload constant, the processing time should be halfed.
+
+### Linear Scale-up
+
+When adding more recources doubled, workload doubled, the processing time should be constant.
+
 ### Architectures
 
 1. Shared-memory: multiple CPUSs are attached to an interconnection network and can access a common region of main memory
@@ -551,6 +557,8 @@ B+ Tree (You know this well enough)
 
    1. Linear speed-up and linear scale-up: keep adding more CPUs will always get a better performance!
 
+   
+   
    
 
 ## Cloud services/Distributed Database
